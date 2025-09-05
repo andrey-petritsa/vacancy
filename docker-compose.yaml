@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  back:
+    container_name: vacancy_back
+    build:
+      context: ./vacancy_back
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - ENV=development
+    volumes:
+      - ./vacancy_back:/app
+
+  jenkins:
+    container_name: vacancy_jenkins
+    image: jenkins/jenkins:lts
+    ports:
+      - "5003:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+  front:
+    container_name: vacancy_front
+    build:
+      context: ./vacancy_front
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+    volumes:
+      - ./vacancy_front/vacancy/src:/app/vacancy/src
+
+volumes:
+  jenkins_home:
