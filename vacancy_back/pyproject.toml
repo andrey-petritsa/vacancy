@@ -5,10 +5,15 @@ description = ""
 authors = [
     {name = "Andrey Petritsa", email = "andrey@petritsa.ru"}
 ]
-requires-python = ">=3.11"
+packages = [{ include = "vacancy", from = "vacancy_back" }]
+requires-python = ">=3.9,<4.0"
 dependencies = [
     "flask>=2.3,<3.0",
-    "requests (>=2.32.5,<3.0.0)"
+    "requests (>=2.32.5,<3.0.0)",
+    "pyrogram>=2.0.106,<3.0.0",
+    "tgcrypto",
+    "sqlalchemy (>=2.0.43,<3.0.0)",
+    "behave (>=1.3.3,<2.0.0)"
 ]
 
 [build-system]

@@ -11,6 +11,9 @@ venv/
 .pytest_cache/
 *.egg-info/
 dist/
+vacancy_back/secrets/my_account.session
+offset_id
+vacancy_back/secrets
 
 # Poetry
 poetry.lock
