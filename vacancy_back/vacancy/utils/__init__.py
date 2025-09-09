@@ -4,7 +4,6 @@ artifacts_path = "artifacts"
 logger = ConsoleLogger()
 
 from types import SimpleNamespace
-from typing import Any
 
 def to_dtos(data):
     return [SimpleNamespace(**d) for d in data]
