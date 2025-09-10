@@ -19,5 +19,6 @@ def step_impl(context):
 @then("работы получены")
 def step_impl(context):
     required = ['title','description','languages','salary','skills','experience_years']
+    assert len(context.jobs) > 0
     for job in context.jobs:
         assert required.issubset(job.__dict__)
