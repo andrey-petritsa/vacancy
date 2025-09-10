@@ -2,5 +2,16 @@ services:
   back:
     build:
       target: test
-    environment:
-      - ENV=test
+
+    volumes:
+      - ./vacancy_back:/app
+
+  front:
+    build:
+      target: test
+
+    ports:
+      - "80:5173"
+
+    volumes:
+      - ./vacancy_front/vacancy/src:/app/vacancy/src

@@ -2,9 +2,10 @@ services:
   back:
     build:
       target: prod
-    environment:
-      - ENV=production
 
   front:
-    environment:
-      - ENV=production
+    build:
+      target: prod
+
+    ports:
+      - "80:80"
