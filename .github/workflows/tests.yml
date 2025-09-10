@@ -1,0 +1,36 @@
+name: Run tests in Docker
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      DEEPSEEK_TOKEN: ${{ secrets.DEEPSEEK_TOKEN }}
+      TG_API_HASH: ${{ secrets.TG_API_HASH }}
+      TG_API_ID: ${{ secrets.TG_API_ID }}
+      TG_SESSION: ${{ secrets.TG_SESSION }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          echo "DEEPSEEK_TOKEN=${DEEPSEEK_TOKEN}" >> vacancy_back/.env
+          echo "TG_API_HASH=${TG_API_HASH}" >> vacancy_back/.env
+          echo "TG_API_ID=${TG_API_ID}" >> vacancy_back/.env
+          echo "TG_SESSION=${TG_SESSION}" >> vacancy_back/.env
+
+      - name: Build test container
+        run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml build back
+
+      - name: Run tests
+        run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml run --rm back

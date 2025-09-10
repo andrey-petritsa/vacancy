@@ -1,5 +1,6 @@
+import os
+
 from behave import *
-import secrets.secrets as secrets
 from vacancy.sources.freelanceru.freelanceru import Freelanceru
 
 use_step_matcher("re")
@@ -7,7 +8,7 @@ use_step_matcher("re")
 
 @when("у меня есть аккаунт на сайте freelanceru")
 def step_impl(context):
-    context.token = secrets.freelanceru_token
+    context.token = os.getenv("FREELANCERU_TOKEN")
 
 
 @step("я получаю сегодняшние работы с площадки")

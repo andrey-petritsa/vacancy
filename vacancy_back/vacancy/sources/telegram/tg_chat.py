@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from pyrogram import Client
 
 import vacancy.utils as utils
-from secrets import secrets
+import base64
 
 
 class TgChat:
@@ -12,7 +12,7 @@ class TgChat:
         self.limit = 1000
         path_to_session = 'secrets/my_account'
         abs = os.path.abspath(path_to_session)
-        self.app = Client(abs, api_id=secrets.tg_api_id, api_hash=secrets.tg_api_hash)
+        self.app = Client(name='tg_session', session_string=os.getenv("TG_SESSION"), api_id=os.getenv("TG_API_ID"), api_hash=os.getenv("TG_API_HASH"))
         self.app.start()
 
     def get_recent_messages(self, channel_id, amount):

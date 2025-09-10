@@ -1,8 +1,8 @@
 import json
+import os
 
 import requests
 import vacancy.utils as utils
-from secrets import secrets
 
 
 class DeepSeekVacanciesParser:
@@ -27,7 +27,7 @@ class DeepSeekVacanciesParser:
             "contact — контакт для связи."
             "experience_years - сколько требуется лет опыта"
         )
-        self.__token = secrets.deepseek_token
+        self.__token = os.getenv("DEEPSEEK_TOKEN")
 
     def msgs_to_vacancies(self, msgs, try_count=0):
         utils.logger.log(f'Преобразую сообщения в вакансии. Кол-во сообщений {len(msgs)}')

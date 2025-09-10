@@ -8,6 +8,7 @@ __pycache__/
 *.env
 venv/
 .env
+.env.big
 .pytest_cache/
 *.egg-info/
 dist/
@@ -16,7 +17,6 @@ offset_id
 vacancy_back/secrets
 
 # Poetry
-poetry.lock
 *.dist-info/
 
 # Node / Vue
