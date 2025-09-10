@@ -1,0 +1,6 @@
+services:
+  back:
+    build:
+      target: test
+    environment:
+      - ENV=test

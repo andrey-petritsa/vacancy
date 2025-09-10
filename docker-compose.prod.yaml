@@ -1,0 +1,10 @@
+services:
+  back:
+    build:
+      target: prod
+    environment:
+      - ENV=production
+
+  front:
+    environment:
+      - ENV=production

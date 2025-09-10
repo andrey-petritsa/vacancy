@@ -1,0 +1,14 @@
+services:
+  back:
+    build:
+      target: dev
+    environment:
+      - ENV=development
+    volumes:
+      - ./vacancy_back:/app
+
+  front:
+    environment:
+      - ENV=development
+    volumes:
+      - ./vacancy_front/vacancy/src:/app/vacancy/src

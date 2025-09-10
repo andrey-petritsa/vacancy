@@ -1,11 +1,21 @@
-FROM python:3.11-slim
-
+FROM python:3.11 AS base
 RUN pip install poetry
-
 WORKDIR /app
+COPY pyproject.toml poetry.lock ./
+RUN poetry config virtualenvs.create false
 COPY . .
 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi --no-root
+# ===== Dev =====
+FROM base AS dev
+RUN poetry install --with dev --no-interaction --no-ansi --no-root
+CMD ["poetry", "run", "python", "vacancy/main/main.py", "run"]
 
-CMD ["python", "vacancy/main/main.py", "run"]
+# ===== Test =====
+FROM base AS test
+RUN poetry install --with dev --no-interaction --no-ansi --no-root
+CMD ["./run_tests.sh"]
+
+# ===== Prod =====
+FROM base AS prod
+RUN poetry install --without dev,test --no-interaction --no-ansi --no-root
+CMD ["poetry", "run", "python", "vacancy/main/main.py", "run"]
