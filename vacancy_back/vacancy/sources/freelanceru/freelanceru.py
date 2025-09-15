@@ -41,7 +41,7 @@ class Freelanceru:
         # Main block
         title_element = job_soup.find("h2")
         job['title'] = title_element.find("a").text.strip()
-        job['href'] = f"{self.urls['main']}/{title_element.find("a").get("href")}"
+        job['href'] = f"{self.urls['main']}/{title_element.find('a').get('href')}"
 
         description_element = job_soup.find("a", class_="description")
         job['description'] = description_element.text.strip()
