@@ -29,8 +29,5 @@ jobs:
           echo "TG_API_ID=${TG_API_ID}" >> vacancy_back/.env
           echo "TG_SESSION=${TG_SESSION}" >> vacancy_back/.env
 
-      - name: Build test container
-        run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml build back
-
       - name: Run tests
-        run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml run --rm back
+        run: make run_tests

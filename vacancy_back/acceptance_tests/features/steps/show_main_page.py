@@ -2,38 +2,38 @@ from behave import *
 
 from vacancy.ui.main_page import MainPage
 
-use_step_matcher("re")
 
-
-@when("у меня есть вакансии")
+@step("у меня есть вакансии")
 def step_impl(context):
     vacations = [
         {
-            "profession": "backend_programmer",
-            "languages": ["Python"],
-            "salary": {"min": 200000, "max": 240000},
-            "work_mode": "remote",
-            "domain": "e-commerce",
-            "description": "Valta Pet Products: переписываем платформу на Django.",
-            "skills": {
-                "frameworks": ["Django", "Django Ninja", "FastAPI"],
-                "databases": ["PostgreSQL", "Redis"],
-                "etc": ["Celery", "RabbitMQ"]
+            "profession":"backend_programmer",
+            "languages":["Python"],
+            "salary":{"min":200000, "max":240000},
+            "work_mode":"remote",
+            "domain":"e-commerce",
+            "description":"Valta Pet Products: переписываем платформу на Django.",
+            "skills":{
+                "frameworks":["Django", "Django Ninja", "FastAPI"],
+                "databases":["PostgreSQL", "Redis"],
+                "etc":["Celery", "RabbitMQ"]
             },
-            "responsibility": "Переписывание ядра с упором на стабильность и скорость.",
-            "contact": "@asyasukhanovarecr",
-            "experience_years": 3,
-            "id": 1
+            "responsibility":"Переписывание ядра с упором на стабильность и скорость.",
+            "contact":"@asyasukhanovarecr",
+            "experience_years":3,
+            "id":1
         },
     ]
     context.vacations = vacations
+
 
 @step("я показываю их на странице")
 def step_impl(context):
     view_page = MainPage.show(context.vacations)
     context.view_page = view_page
 
-@then("вакансии отображаются на странице")
+
+@step("вакансии отображаются на странице")
 def step_impl(context):
     cards = [
         {
@@ -43,13 +43,13 @@ def step_impl(context):
                 'domain':'e-commerce',
                 'description':'Valta Pet Products: переписываем платформу на Django.',
                 'responsibility':'Переписывание ядра с упором на стабильность и скорость.',
-                'experience': '3 года'
+                'experience':'3 года'
             },
             'body':{
-                'skills': [
-                    {'name': '🧩 Frameworks', 'items': ['Django', 'Django Ninja', 'FastAPI']},
-                    {'name': '🗄️ Databases', 'items': ['PostgreSQL', 'Redis']},
-                    {'name': '⚙️ Other', 'items': ['Celery', 'RabbitMQ']},
+                'skills':[
+                    {'name':'🧩 Frameworks', 'items':['Django', 'Django Ninja', 'FastAPI']},
+                    {'name':'🗄️ Databases', 'items':['PostgreSQL', 'Redis']},
+                    {'name':'⚙️ Other', 'items':['Celery', 'RabbitMQ']},
                 ]
             }
         }

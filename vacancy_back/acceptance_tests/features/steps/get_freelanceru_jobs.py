@@ -1,12 +1,11 @@
 import os
 
 from behave import *
+
 from vacancy.sources.freelanceru.freelanceru import Freelanceru
 
-use_step_matcher("re")
 
-
-@when("у меня есть аккаунт на сайте freelanceru")
+@step("у меня есть аккаунт на сайте freelanceru")
 def step_impl(context):
     context.token = os.getenv("FREELANCERU_TOKEN")
 
@@ -17,9 +16,10 @@ def step_impl(context):
     jobs = freelanceru.get_today_jobs()
     context.jobs = jobs
 
-@then("работы получены")
+
+@step("работы получены")
 def step_impl(context):
-    required = ['title','description','languages','salary','skills','experience_years']
+    required = ['title', 'description', 'languages', 'salary', 'skills', 'experience_years']
     assert len(context.jobs) > 0
     for job in context.jobs:
         assert required.issubset(job.__dict__)

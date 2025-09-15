@@ -1,0 +1,9 @@
+services:
+  back:
+    volumes:
+      - ../vacancy_back:/app
+
+  front:
+    volumes:
+      - ../vacancy_front:/app
+      - /app/node_modules
