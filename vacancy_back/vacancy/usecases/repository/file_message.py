@@ -1,7 +1,7 @@
 import json
 import os
 import vacancy.utils as utils
-
+from vacancy.utils.pathes import get_out_dir
 
 
 class FileMessage:
@@ -57,7 +57,7 @@ class FileMessage:
         if len(msgs) == 0:
             return None
 
-        latest_msg = msgs[0]
+        latest_msg = msgs[-1]
         parts = latest_msg.id.split(":")
         id = parts[0]
         return int(id)
@@ -68,4 +68,4 @@ class FileMessage:
 
     @classmethod
     def __get_path_to_file(cls):
-        return f"{utils.artifacts_path}/messages.jsonl"
+        return f"{get_out_dir()}/messages.jsonl"

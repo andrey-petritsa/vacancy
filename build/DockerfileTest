@@ -1,0 +1,9 @@
+FROM vacancy-back:latest
+WORKDIR /app
+RUN poetry install --no-interaction --no-ansi --no-root --with test
+COPY tests ./tests
+
+ENV BACK_URL=http://back:5000 \
+    FRONT_URL=http://front:80
+
+CMD ["bash", "tests/run_tests.sh"]

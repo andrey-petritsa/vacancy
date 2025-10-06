@@ -1,3 +1,4 @@
+from vacancy.main.app_setuper import init_directories
 from vacancy.usecases.repository.file_message import FileMessage
 
 from vacancy.utils import to_dtos

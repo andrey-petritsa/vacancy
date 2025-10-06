@@ -1,4 +1,4 @@
-from test.app import App
+from tests.helpers.app import App
 
 
 class TestSystem:

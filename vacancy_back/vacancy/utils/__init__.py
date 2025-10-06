@@ -1,6 +1,7 @@
+import os
+
 from vacancy.utils.console_logger import ConsoleLogger
 
-artifacts_path = "artifacts"
 logger = ConsoleLogger()
 
 from types import SimpleNamespace

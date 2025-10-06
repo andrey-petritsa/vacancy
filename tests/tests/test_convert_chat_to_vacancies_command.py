@@ -1,6 +1,6 @@
-from test.mocks.spy_message import SpyMessage
-from test.mocks.spy_vacancies_parser import SpyVacanciesParser
-from test.mocks.spy_vacancy import SpyVacancy
+from tests.helpers.mocks.spy_message import SpyMessage
+from tests.helpers.mocks.spy_vacancies_parser import SpyVacanciesParser
+from tests.helpers.mocks.spy_vacancy import SpyVacancy
 from vacancy.usecases.convert_chat_to_vacations_command import ConvertChatToVacanciesCommand
 
 

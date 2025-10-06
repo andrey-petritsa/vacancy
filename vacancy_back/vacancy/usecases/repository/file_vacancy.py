@@ -1,6 +1,7 @@
 import json
 import os
 import vacancy.utils as utils
+from vacancy.utils.pathes import get_out_dir
 
 
 class FileVacancy:
@@ -25,4 +26,4 @@ class FileVacancy:
 
     @classmethod
     def get_path_to_file(cls):
-        return f"{utils.artifacts_path}/vacancies.jsonl"
+        return f"{get_out_dir()}/vacancies.jsonl"

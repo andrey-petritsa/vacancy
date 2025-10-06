@@ -1,4 +1,4 @@
-from test.mocks.spy_message import SpyMessage
+from tests.helpers.mocks.spy_message import SpyMessage
 from vacancy.usecases.save_chat_command import SaveChatCommand
 
 class TestSaveChatCommand:

@@ -1,6 +1,6 @@
 import pytest
 
-from test.test_setuper import TestSetuper
+from tests.helpers.test_setuper import TestSetuper
 
 def pytest_configure():
     TestSetuper.setup()

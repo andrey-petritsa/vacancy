@@ -1,0 +1,22 @@
+FROM python:3.13-slim AS base
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install poetry
+WORKDIR /app
+COPY vacancy_back/pyproject.toml vacancy_back/poetry.lock ./
+COPY vacancy_back/.env ./
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi --no-root --without test
+
+FROM base AS dev
+CMD ["poetry", "run", "python", "-m", "vacancy.main.main", "run"]
+
+# ===== Prod =====
+FROM base AS prod
+COPY vacancy_back/vacancy ./vacancy
+CMD ["poetry", "run", "python", "-m", "vacancy.main.main", "run"]

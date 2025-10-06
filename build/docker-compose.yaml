@@ -1,0 +1,31 @@
+services:
+  back:
+    image: vacancy-back:${TAG:-latest}
+    container_name: vacancy-back
+    build:
+      context: ../
+      dockerfile: build/DockerfileBack
+      target: ${TARGET:-dev}
+    ports:
+      - "5001:5000"
+
+  front:
+    image: vacancy-front:${TAG:-latest}
+    container_name: vacancy-front
+    build:
+      context: ../
+      dockerfile: build/DockerfileFront
+      target: ${TARGET:-dev}
+    ports:
+      - "80:80"
+
+  test:
+    image: vacancy-test:${TAG:-latest}
+    container_name: vacancy-test
+    build:
+      context: ../
+      dockerfile: build/DockerfileTest
+    depends_on:
+      - back
+      - front
+    profiles: [ "ci" ]

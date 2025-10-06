@@ -1,6 +1,6 @@
 import logging
 
-from test.test_setuper import TestSetuper
+from tests.helpers.test_setuper import TestSetuper
 
 def before_all(context):
     TestSetuper.setup()
