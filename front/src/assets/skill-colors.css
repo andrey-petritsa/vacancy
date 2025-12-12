@@ -1,0 +1,53 @@
+.skill-color_type_backend {
+  background: #fff1e6;
+  border-color: #ffd6ae;
+  color: #92400e;
+}
+
+.skill-color_type_frontend {
+  background: #e6fffb;
+  border-color: #99f6e4;
+  color: #0f766e;
+}
+
+.skill-color_type_backend_framework {
+  background: #e0f2fe;
+  border-color: #bae6fd;
+  color: #075985;
+}
+
+.skill-color_type_frontend_framework {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+  color: #5b21b6;
+}
+
+.skill-color_type_database {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.skill-color_type_test {
+  background: #fef9c3;
+  border-color: #fde68a;
+  color: #854d0e;
+}
+
+.skill-color_type_soft {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #9f1239;
+}
+
+.skill-color_type_etc {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+.skill-color_type_cicd {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #3730a3;
+}

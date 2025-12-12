@@ -7,14 +7,16 @@ __pycache__/
 *.log
 *.env
 venv/
-.env
+back/secrets/.env
 .env.big
 .pytest_cache/
 *.egg-info/
 dist/
-vacancy_back/secrets/my_account.session
+back/secrets/my_account.session
 offset_id
-vacancy_back/secrets
+back/secrets
+database
+test-database
 
 # Poetry
 *.dist-info/
@@ -28,6 +30,8 @@ yarn-debug.log*
 
 # IDE / editor
 .vscode/
-.idea/
+.idea/*
+!.idea/runConfigurations/
+!.idea/helpers/
 *.swp
 .DS_Store

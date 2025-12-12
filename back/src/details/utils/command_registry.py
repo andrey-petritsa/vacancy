@@ -1,0 +1,8 @@
+from details.factory.app_factory import AppFactory
+
+show_vacancies_command = AppFactory.create_show_vacancies_command()
+change_vacancy_status_command = AppFactory.create_change_vacancy_status_command()
+generate_cover_latter_command = AppFactory.create_generate_cover_latter_command()
+show_user_command = AppFactory.create_show_user_command()
+get_vacancies_from_source_command = AppFactory.create_get_vacancies_from_source_command()
+parse_vacancy_command = AppFactory.create_parse_vacancy_command()

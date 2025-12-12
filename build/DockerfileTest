@@ -1,9 +1,23 @@
-FROM vacancy-back:latest
+FROM python:3.13-slim AS base
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV TZ=Europe/Moscow
+
+RUN pip install --no-cache-dir poetry
 WORKDIR /app
-RUN poetry install --no-interaction --no-ansi --no-root --with test
-COPY tests ./tests
 
-ENV BACK_URL=http://back:5000 \
-    FRONT_URL=http://front:80
+COPY back /app/back
+COPY tests /app/tests
 
-CMD ["bash", "tests/run_tests.sh"]
+RUN poetry config virtualenvs.create false \
+ && poetry install --no-interaction --no-ansi --no-root -C /app/back
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app/back/src:/app/tests
+
+CMD ["pytest", "tests"]

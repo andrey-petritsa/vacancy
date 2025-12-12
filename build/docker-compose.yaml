@@ -5,9 +5,20 @@ services:
     build:
       context: ../
       dockerfile: build/DockerfileBack
-      target: ${TARGET:-dev}
+    volumes:
+      - vacancy-database:/app/back/database
     ports:
-      - "5001:5000"
+      - "5001:5001"
+
+  parser:
+    image: vacancy-parse:${TAG:-latest}
+    container_name: vacancy-parse
+    build:
+      context: ../
+      dockerfile: build/DockerFileParser
+    volumes:
+      - vacancy-database:/app/back/database
+
 
   front:
     image: vacancy-front:${TAG:-latest}
@@ -15,7 +26,6 @@ services:
     build:
       context: ../
       dockerfile: build/DockerfileFront
-      target: ${TARGET:-dev}
     ports:
       - "80:80"
 
@@ -25,7 +35,7 @@ services:
     build:
       context: ../
       dockerfile: build/DockerfileTest
-    depends_on:
-      - back
-      - front
     profiles: [ "ci" ]
+
+volumes:
+  vacancy-database:

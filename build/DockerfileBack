@@ -6,17 +6,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install poetry
+ENV TZ=Europe/Moscow
+
+RUN pip install --no-cache-dir poetry
 WORKDIR /app
-COPY vacancy_back/pyproject.toml vacancy_back/poetry.lock ./
-COPY vacancy_back/.env ./
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-interaction --no-ansi --no-root --without test
 
-FROM base AS dev
-CMD ["poetry", "run", "python", "-m", "vacancy.main.main", "run"]
+COPY back /app/back
 
-# ===== Prod =====
-FROM base AS prod
-COPY vacancy_back/vacancy ./vacancy
-CMD ["poetry", "run", "python", "-m", "vacancy.main.main", "run"]
+RUN poetry config virtualenvs.create false \
+ && poetry install --no-interaction --no-ansi --no-root --without test -C /app/back
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app/back/src
+
+CMD ["python", "-m", "details.main.back.main"]

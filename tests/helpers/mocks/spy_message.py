@@ -1,4 +1,4 @@
-from vacancy.usecases.repository.struct import Struct
+from details.file_repository.struct import Struct
 
 
 class SpyMessage:
@@ -8,7 +8,7 @@ class SpyMessage:
         pass
 
     @classmethod
-    def save_many(cls, list_of_msgs):
+    def save_many_unparsed(cls, list_of_msgs):
         cls.saved = list_of_msgs
 
     @classmethod
