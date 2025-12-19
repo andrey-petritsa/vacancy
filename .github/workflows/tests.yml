@@ -11,4 +11,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Сборка Docker-контейнеров
-        run: docker-compose -f .build/docker-compose.yaml build front back parse
+        run: docker-compose -f build/docker-compose.yaml build front back parse
