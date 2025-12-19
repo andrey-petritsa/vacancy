@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Сборка Docker-контейнеров
-        run: docker-compose -f build/docker-compose.yaml build front back parse
+        run: docker-compose -f build/docker-compose.yaml build front back parser
