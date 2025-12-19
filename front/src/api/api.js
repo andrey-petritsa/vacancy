@@ -32,7 +32,7 @@ export async function show_short_vacancies_cards(search_query) {
 
 export async function generate_cover_latter(vacancy_text) {
   const url = `${urls.backend}/generate_cover_latter`
-  const headers = {"Content-Type": "application/json"}
+  const headers = {"Content-Type": "application/json", "X-TOKEN": localStorage.getItem("user_token")}
   const response = await fetch(url, {
     method: "POST",
     headers: headers,

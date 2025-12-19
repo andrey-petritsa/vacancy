@@ -1,3 +1,4 @@
+import sys
 import time
 import signal
 
@@ -16,23 +17,27 @@ def handle_stop(signum, frame):
 signal.signal(signal.SIGINT, handle_stop)
 signal.signal(signal.SIGTERM, handle_stop)
 
+config.limit = 10
 
-while not should_stop:
-    config.limit = 10
+
+while True:
     loggers.logger.info('Загружаю вакансии из источника')
     command_registry.get_vacancies_from_source_command.execute()
     loggers.logger.info('Вакансии успешно загружены')
-
     if should_stop:
-        break
+        sys.exit(0)
 
-    while not should_stop:
+    while True:
         try:
+            loggers.logger.info('Начинаю парсинг вакансии')
             command_registry.parse_vacancy_command.execute()
+            loggers.logger.info('Парсинг вакансии завершен')
+            if should_stop:
+                sys.exit(0)
         except VacancyNotFoundException:
             loggers.logger.info('Не найдено вакансии для парсинга. Ожидаю минуту...')
             for _ in range(60):
                 if should_stop:
-                    break
+                    sys.exit(0)
                 time.sleep(1)
             break

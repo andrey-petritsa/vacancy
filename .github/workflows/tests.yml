@@ -1,33 +1,14 @@
-name: Run tests in Docker
+name: Приветствие
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
-      - master
-  pull_request:
   workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
-    env:
-      DEEPSEEK_TOKEN: ${{ secrets.DEEPSEEK_TOKEN }}
-      TG_API_HASH: ${{ secrets.TG_API_HASH }}
-      TG_API_ID: ${{ secrets.TG_API_ID }}
-      TG_SESSION: ${{ secrets.TG_SESSION }}
-
+    runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Create .env file
-        run: |
-          echo "DEEPSEEK_TOKEN=${DEEPSEEK_TOKEN}" >> vacancy_back/.env
-          echo "TG_API_HASH=${TG_API_HASH}" >> vacancy_back/.env
-          echo "TG_API_ID=${TG_API_ID}" >> vacancy_back/.env
-          echo "TG_SESSION=${TG_SESSION}" >> vacancy_back/.env
-
-      - name: Run tests
-        run: make -C build run_tests
+      - name: Проверить что ci запускается на сервере
+        run: whoami

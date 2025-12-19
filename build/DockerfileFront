@@ -1,21 +1,20 @@
-FROM node:24-alpine
+FROM node:24-alpine AS builder
 WORKDIR /app
 ENV TZ=Europe/Moscow
-# Copy only package.json first to avoid using a lockfile that may point to a private registry
-COPY front/package.json ./
 
-# Ensure we use the public npm registry and install deps without relying on a lockfile
+COPY front/package.json ./
 RUN npm config set registry https://registry.npmjs.org/ \
     && npm install
 
-# Now copy the rest of the frontend sources
 COPY front ./
-
-# Build the app
 RUN npm run build
 
-# Lightweight static server
-RUN npm install -g serve
-EXPOSE 80
+FROM node:24-alpine
+WORKDIR /app
+ENV TZ=Europe/Moscow
 
+COPY --from=builder /app/dist ./dist
+RUN npm install -g serve
+
+EXPOSE 80
 CMD ["serve", "-s", "dist", "-l", "80"]
