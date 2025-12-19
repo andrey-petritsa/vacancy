@@ -10,7 +10,5 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
-      - name: Проверить что ci запускается на сервере
-        run: whoami
       - name: Сборка Docker-контейнеров
-        run: docker-compose -f .build/docker-compose.yaml build
+        run: docker-compose -f .build/docker-compose.yaml build front back parse
